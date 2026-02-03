@@ -11,7 +11,8 @@ export const Contact = () => {
   } = useForm();
  const onSubmit = async (data: any) => {
   try {
-    await fetch("http://localhost:5000/enquiry", {
+    await fetch("https://adroit-backend.onrender.com/enquiry",
+ {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
