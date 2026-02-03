@@ -6,13 +6,24 @@ export const Contact = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
+ const onSubmit = async (data: any) => {
+  try {
+    await fetch("http://localhost:5000/enquiry", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
 
-  const onSubmit = (data: any) => {
-    console.log(data);
-    alert("Thank you for contacting us! We will get back to you shortly.");
-  };
+    alert("Thank you! Your enquiry has been submitted.");
+    reset();   // clears the form
+  } catch (error) {
+    alert("Something went wrong!");
+  }
+};
+
 
   return (
     <div className="flex flex-col w-full">
